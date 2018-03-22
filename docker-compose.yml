@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+
+  web:
+    build:
+      context: .
+      dockerfile: ./.docker/Dockerfile
+    container_name: ngfitness
+    image: ngfitness
+    networks:
+      - prod-network
+    ports:
+      - '80:80'
+    environment:
+    - PORT=80
+
+networks:
+  prod-network:
+    driver: bridge
