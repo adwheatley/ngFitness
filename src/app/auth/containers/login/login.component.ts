@@ -6,17 +6,17 @@ import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
 import { User } from "../../models/user.model";
 
+
 @Component({
   selector: 'app-login',
   template: `
-  <h2>Home</h2>
   <div *ngIf="user$ | async as user">
+  <div *ngIf="user.uid">
     <h1>Hi, {{ user.displayName }}</h1>
     <h4>{{ user | json }}</h4>
-
+  </div>
     <app-auth-form *ngIf="!user.uid" (submitted)="loginUser($event)">
-      <h1>Login</h1>
-      <button type="submit">
+      <button type="submit" style="width: 100%" class="btn btn-primary">
         Login
       </button>
       <div class="error" *ngIf="error$ | async as error">
@@ -28,7 +28,8 @@ import { User } from "../../models/user.model";
       Logout
     </button>
   </div>
-  `
+  `,
+  styleUrls: ['login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
