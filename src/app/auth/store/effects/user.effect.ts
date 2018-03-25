@@ -45,12 +45,22 @@ export class UserEffects {
   loginEmail: Observable<Action> = this.actions
     .ofType(userActions.EMAIL_LOGIN)
     .map((action: userActions.EmailLogin) => action.payload)
+    .delay(1000)
     .switchMap(payload => {
-      return Observable.fromPromise(this.authService.emailLogin(payload.email, payload.password));
-    })
-    .map(credential => new userActions.GetUser())
-    .catch(err => {
-      return Observable.of(new userActions.AuthError({ error: err.message }));
+      return this.authService.emailLogin(payload.email, payload.password)
+      .then(credential => new userActions.GetUser())
+      .catch(err => new userActions.AuthError({ error: err.message }));
+    });
+    @Effect()
+
+  registerEmail: Observable<Action> = this.actions
+    .ofType(userActions.EMAIL_REGISTER)
+    .map((action: userActions.EmailRegister) => action.payload)
+    .delay(1000)
+    .switchMap(payload => {
+      return this.authService.emailRegister(payload.email, payload.password)
+      .then(credential => new userActions.GetUser())
+      .catch(err => new userActions.AuthError({ error: err.message }));
     });
 
   @Effect()

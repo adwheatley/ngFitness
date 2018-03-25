@@ -5,6 +5,7 @@ export const GET_USER = "[Auth] Get user";
 export const AUTHENTICATED = "[Auth] Authenticated";
 export const NOT_AUTHENTICATED = "[Auth] Not Authenticated";
 export const EMAIL_LOGIN = "[Auth] Email login attempt";
+export const EMAIL_REGISTER = "[Auth] Email Register attempt";
 export const LOGOUT = "[Auth] Logout";
 export const AUTH_ERROR = "[Auth] Error";
 
@@ -35,6 +36,11 @@ export class EmailLogin implements Action {
   constructor(public payload: { email: String, password: String}) {}
 }
 
+export class EmailRegister implements Action {
+  readonly type = EMAIL_REGISTER;
+  constructor(public payload: { email: String, password: String}) {}
+}
+
 /// Logout Actions
 export class Logout implements Action {
   readonly type = LOGOUT;
@@ -46,5 +52,6 @@ export type UserActions =
   | Authenticated
   | NotAuthenticated
   | EmailLogin
+  | EmailRegister
   | AuthError
   | Logout;

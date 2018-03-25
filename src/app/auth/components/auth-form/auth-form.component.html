@@ -14,7 +14,7 @@
             <div class="form-group">
               <input type="password" class="form-control" formControlName="password" placeholder="Password">
             </div>
-            <div class="alert alert-info" *ngIf="emailFormat || passwordInvalid">
+            <div class="text-center mb-3" *ngIf="emailFormat || passwordInvalid">
                <span *ngIf="emailFormat">Invalid email format</span>
                <span *ngIf="emailFormat && passwordInvalid">+</span>
                <span *ngIf="passwordInvalid">Password is required</span>
@@ -30,7 +30,7 @@
             </div>
           </div>
 
-          <div class="auth-form__toggle">
+          <div class="auth-form__toggle text-center text-white mt-2">
             <ng-content select="a"></ng-content>
           </div>
             <div class="clearfix"></div>

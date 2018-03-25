@@ -19,7 +19,8 @@ export const ROUTES: Routes = [
     path: 'auth',
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'login' },
-      { path: 'login', component: fromContainers.LoginComponent }
+      { path: 'login', component: fromContainers.LoginComponent },
+      { path: 'register', component: fromContainers.RegisterComponent }
     ]
   }
 ];

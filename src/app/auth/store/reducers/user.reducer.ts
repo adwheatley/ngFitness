@@ -30,6 +30,8 @@ export function reducer(
       return { ...state, ...initialState, loading: false };
     case userActions.EMAIL_LOGIN:
       return { ...state, error: null, loading: true };
+    case userActions.EMAIL_REGISTER:
+      return { ...state, error: null, loading: true };
     case userActions.AUTH_ERROR:
       return { ...initialState, ...action.payload, loading: false };
     case userActions.LOGOUT:

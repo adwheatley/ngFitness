@@ -8,7 +8,7 @@ import { User } from "../../models/user.model";
 
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   template: `
   <div *ngIf="user$ | async as user">
   <div *ngIf="user.uid">
@@ -20,12 +20,12 @@ import { User } from "../../models/user.model";
     <div class="double-bounce1"></div>
     <div class="double-bounce2"></div>
   </div>
-    <app-auth-form *ngIf="!user.uid && !(loading$ | async)" (submitted)="loginUser($event)">
+    <app-auth-form *ngIf="!user.uid && !(loading$ | async)" (submitted)="registerUser($event)">
       <button type="submit" style="width: 100%" class="btn btn-primary">
-        Login
+        Register
       </button>
 
-      <a routerLink="/auth/register">Not registered?</a>
+      <a routerLink="/auth/login">Already registered?</a>
 
       <div class="error text-center mb-3" *ngIf="error$ | async as error">
        {{ error }}
@@ -37,9 +37,9 @@ import { User } from "../../models/user.model";
     </button>
   </div>
   `,
-  styleUrls: ['login.component.scss']
+  styleUrls: ['register.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   user$: Observable<User>;
   error$: Observable<any>;
@@ -58,9 +58,9 @@ export class LoginComponent implements OnInit {
     this.store.dispatch(new fromUserStore.Logout());
   }
 
-  loginUser(event: FormGroup) {
+  registerUser(event: FormGroup) {
     const { email, password } = event.value;
-    this.store.dispatch(new fromUserStore.EmailLogin({email, password}));
+    this.store.dispatch(new fromUserStore.EmailRegister({email, password}));
   }
 
 }

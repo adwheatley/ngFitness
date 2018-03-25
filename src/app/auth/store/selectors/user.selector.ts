@@ -24,7 +24,11 @@ export const getUser = createSelector(
 
 export const getUserLoading = createSelector(
   getUserState,
-  (state: fromUser.UserState) => state.loading
+  (state: fromUser.UserState) => {
+    if (state) {
+      return state.loading;
+    }
+  }
 );
 
 export const getUserLoaded = createSelector(
@@ -34,6 +38,10 @@ export const getUserLoaded = createSelector(
 
 export const getUserError = createSelector(
   getUserState,
-  (state: fromUser.UserState) => state.error
+  (state: fromUser.UserState) => {
+    if (state) {
+      return state.error;
+    }
+  }
 );
 

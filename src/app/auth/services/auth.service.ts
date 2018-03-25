@@ -17,4 +17,9 @@ export class AuthService implements OnInit {
     return this.afAuth.auth
       .signInWithEmailAndPassword(email, password);
   }
+
+  emailRegister(email, password): Promise<any> {
+    return this.afAuth.auth
+      .createUserWithEmailAndPassword(email, password);
+  }
 }
