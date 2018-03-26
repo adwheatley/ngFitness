@@ -11,16 +11,20 @@ import { User } from "../../models/user.model";
   selector: 'app-login',
   template: `
   <div *ngIf="user$ | async as user">
-  <div *ngIf="user.uid">
+
+    <div *ngIf="user.uid">
     <h1>Hi, {{ user.displayName }}</h1>
     <h4>{{ user | json }}</h4>
   </div>
 
   <div *ngIf="loading$ | async" class="spinner">
-    <div class="double-bounce1"></div>
-    <div class="double-bounce2"></div>
-  </div>
-    <app-auth-form *ngIf="!user.uid && !(loading$ | async)" (submitted)="loginUser($event)">
+  <div class="double-bounce1"></div>
+  <div class="double-bounce2"></div>
+</div>
+
+  <div *ngIf="!user.uid && !(loading$ | async)">
+  <app-auth-header></app-auth-header>
+    <app-auth-form (submitted)="loginUser($event)">
       <button type="submit" style="width: 100%" class="btn btn-primary">
         Login
       </button>
@@ -31,7 +35,8 @@ import { User } from "../../models/user.model";
        {{ error }}
       </div>
     </app-auth-form>
-
+    <app-auth-footer></app-auth-footer>
+    </div>
     <button *ngIf="user.uid" (click)="logout()">
       Logout
     </button>
