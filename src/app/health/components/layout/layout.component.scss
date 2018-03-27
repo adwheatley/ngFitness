@@ -1,0 +1,31 @@
+.header{
+  margin-top: 10px;
+  font-family: 'Passero One', cursive;
+}
+
+img {
+  -webkit-filter: drop-shadow(0px 0px 8px rgba(0, 231, 255, 0.8));
+}
+
+.btn-primary {
+  font-size: 12.5px;
+  width: 100%;
+  background: white;
+  font-family: 'Passero One', cursive;
+  color: #3E6266;
+  border-radius: 5px;
+}
+
+.left {
+  margin-right: -15px;
+}
+
+.right {
+  margin-left: -15px;
+}
+
+
+.active {
+  background: #3E6266;
+  color: white;
+}

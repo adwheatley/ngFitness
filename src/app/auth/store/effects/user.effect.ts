@@ -65,6 +65,18 @@ export class UserEffects {
         })
       );
 
+    @Effect()
+    notAuthenticated: Observable<Action> = this.actions
+      .ofType(userActions.NOT_AUTHENTICATED)
+      .pipe(
+        map((action: userActions.NotAuthenticated) => action.payload),
+        map(item => {
+          return new fromRoot.Go({
+            path: ["/auth"]
+          });
+        })
+      );
+
   @Effect()
   registerEmail: Observable<Action> = this.actions
     .ofType(userActions.EMAIL_REGISTER)

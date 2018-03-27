@@ -37,7 +37,7 @@ export function reducer(
     case userActions.AUTH_ERROR:
       return { ...initialState, ...action.payload, loading: false };
     case userActions.LOGOUT:
-      return { ...state, loading: true };
+      return { initialState };
     default:
       return state;
   }

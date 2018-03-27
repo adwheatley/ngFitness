@@ -39,7 +39,10 @@ export const ROUTES: Routes = [
     ReactiveFormsModule
   ],
   declarations: [...fromContainers.containers, ...fromComponents.components],
-  providers: [...fromServices.services, ...fromGuards.guards]
+  providers: [...fromServices.services, ...fromGuards.guards],
+  exports: [
+    fromContainers.LogoutComponent
+  ]
 })
 export class AuthModule {
   static forRoot(): ModuleWithProviders {

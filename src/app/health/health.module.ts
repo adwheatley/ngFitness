@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TestComponent } from './test/test.component';
+
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/guards';
 import { AuthModule } from '../auth';
 
+import * as fromComponents from './components';
+
 export const ROUTES: Routes = [
   {
     path: 'health',
+    component: fromComponents.LayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', pathMatch: 'full', redirectTo: 'test' },
-      { path: 'test', component: TestComponent },
+      { path: '', pathMatch: 'full', redirectTo: 'schedule'},
+      { path: 'schedule', loadChildren: './modules/schedule/schedule.module#ScheduleModule'}
     ]
   }
 ];
@@ -20,8 +23,8 @@ export const ROUTES: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(ROUTES),
-    AuthModule.forRoot()
+    AuthModule.forRoot(),
   ],
-  declarations: [TestComponent]
+  declarations: [...fromComponents.components]
 })
 export class HealthModule { }

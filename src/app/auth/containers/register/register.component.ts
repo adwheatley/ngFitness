@@ -10,14 +10,12 @@ import { User } from "../../models/user.model";
 @Component({
   selector: 'app-register',
   template: `
-  <div *ngIf="user$ | async as user">
-
   <div *ngIf="loading$ | async" class="spinner">
     <div class="double-bounce1"></div>
     <div class="double-bounce2"></div>
   </div>
 
-  <div *ngIf="!user.uid && !(loading$ | async)">
+  <div *ngIf="!(loading$ | async)">
   <app-auth-header></app-auth-header>
     <app-auth-form (submitted)="registerUser($event)">
       <button type="submit" style="width: 100%" class="btn btn-primary">
@@ -31,31 +29,19 @@ import { User } from "../../models/user.model";
       </div>
     </app-auth-form>
     <app-auth-footer></app-auth-footer>
-    </div>
-    <button *ngIf="user.uid" (click)="logout()">
-      Logout
-    </button>
   </div>
   `,
   styleUrls: ['register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
-  user$: Observable<User>;
   error$: Observable<any>;
   loading$: Observable<boolean>;
 
   constructor(private store: Store<fromUserStore.UserState>) {}
 
   ngOnInit() {
-    this.user$ = this.store.select(fromUserStore.getUser);
     this.error$ = this.store.select(fromUserStore.getUserError);
     this.loading$ = this.store.select(fromUserStore.getUserLoading);
-    this.store.dispatch(new fromUserStore.GetUser());
-  }
-
-  logout() {
-    this.store.dispatch(new fromUserStore.Logout());
   }
 
   registerUser(event: FormGroup) {
