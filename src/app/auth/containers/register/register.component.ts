@@ -10,20 +10,14 @@ import { User } from "../../models/user.model";
 @Component({
   selector: 'app-register',
   template: `
-  <div *ngIf="loading$ | async" class="spinner">
-    <div class="double-bounce1"></div>
-    <div class="double-bounce2"></div>
-  </div>
-
+  <app-spinner *ngIf="(loading$ | async)"></app-spinner>
   <div *ngIf="!(loading$ | async)">
   <app-auth-header></app-auth-header>
     <app-auth-form (submitted)="registerUser($event)">
       <button type="submit" style="width: 100%" class="btn btn-primary">
         Register
       </button>
-
       <a routerLink="/auth/login">Already registered?</a>
-
       <div class="error text-center mb-3" *ngIf="error$ | async as error">
        {{ error }}
       </div>
@@ -40,6 +34,7 @@ export class RegisterComponent implements OnInit {
   constructor(private store: Store<fromUserStore.UserState>) {}
 
   ngOnInit() {
+    this.store.dispatch(new fromUserStore.GetUser());
     this.error$ = this.store.select(fromUserStore.getUserError);
     this.loading$ = this.store.select(fromUserStore.getUserLoading);
   }

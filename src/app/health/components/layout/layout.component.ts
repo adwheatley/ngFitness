@@ -6,28 +6,30 @@ import { Router, NavigationEnd } from '@angular/router';
   template: `
   <div class="row">
     <div class="col text-center header">
-      <h2><img src="../../../assets/ngFitnessLogo.png" height="50">ngFitness</h2>
+      <h2><img src="../../../assets/ngFitnessLogo.png">ngFitness</h2>
     </div>
   </div>
   <div class="row mb-3">
+    <div class="col hide"></div>
     <div class="col left">
-      <button class="btn btn-primary mt-3"
+      <button class="btn mt-3"
         [class.active]="activeRoute === 'meals'">
         meals
       </button>
     </div>
     <div class="col">
-      <button class="btn btn-primary mt-3"
+      <button class="btn mt-3"
         [class.active]="activeRoute === 'schedule'">
         schedule
       </button>
     </div>
     <div class="col right">
-      <button class="btn btn-primary mt-3"
+      <button class="btn mt-3"
         [class.active]="activeRoute === 'workouts'">
         workouts
       </button>
     </div>
+    <div class="col hide"></div>
   </div>
   <router-outlet></router-outlet>
   <div class="row">

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -14,9 +14,6 @@ import * as fromContainers from './containers';
 import * as fromComponents from './components';
 import * as fromServices from './services';
 import * as fromGuards from './guards';
-
-import { HealthModule } from '../health/health.module';
-import { ModuleWithProviders } from '@angular/compiler/src/core';
 
 export const ROUTES: Routes = [
   {
