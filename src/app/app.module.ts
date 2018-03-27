@@ -5,10 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 import * as fromModules from './modules';
 import * as fromContainers from './containers';
 import * as fromAuth from "./auth";
+import { HealthModule } from './health/health.module';
 
 // routes
 export const ROUTES: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'auth' }
+  { path: '', pathMatch: 'full', redirectTo: 'auth' },
+  { path: 'auth', loadChildren: './auth/auth.module#AuthModule'}
 ];
 
 @NgModule({
@@ -19,7 +21,8 @@ export const ROUTES: Routes = [
     BrowserModule,
     fromModules.modules,
     RouterModule.forRoot(ROUTES),
-    fromAuth.AuthModule
+    fromAuth.AuthModule,
+    HealthModule
   ],
   providers: [],
   bootstrap: [fromContainers.AppComponent]

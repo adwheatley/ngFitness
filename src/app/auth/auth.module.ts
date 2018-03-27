@@ -13,6 +13,10 @@ import { LoginComponent } from './containers/login/login.component';
 import * as fromContainers from './containers';
 import * as fromComponents from './components';
 import * as fromServices from './services';
+import * as fromGuards from './guards';
+
+import { HealthModule } from '../health/health.module';
+import { ModuleWithProviders } from '@angular/compiler/src/core';
 
 export const ROUTES: Routes = [
   {
@@ -29,12 +33,21 @@ export const ROUTES: Routes = [
   imports: [
     CommonModule,
     AngularFireAuthModule,
+    RouterModule.forChild(ROUTES),
     EffectsModule.forFeature([fromStore.UserEffects]),
     StoreModule.forFeature("auth", fromStore.reducers),
-    RouterModule.forChild(ROUTES),
     ReactiveFormsModule
   ],
   declarations: [...fromContainers.containers, ...fromComponents.components],
-  providers: [...fromServices.services]
+  providers: [...fromServices.services, ...fromGuards.guards]
 })
-export class AuthModule { }
+export class AuthModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: AuthModule,
+      providers: [
+        fromGuards.AuthGuard
+      ]
+    };
+  }
+ }

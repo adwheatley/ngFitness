@@ -13,6 +13,11 @@ export const getUserState = createSelector(
   }
 );
 
+export const isLoggedIn = createSelector(
+  getUserState,
+  (state: fromUser.UserState) => state.loggedIn
+);
+
 export const getUser = createSelector(
   getUserState,
   (state: fromUser.UserState) => {

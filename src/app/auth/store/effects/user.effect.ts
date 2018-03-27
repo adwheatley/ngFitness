@@ -10,13 +10,14 @@ import { Observable } from "rxjs/Observable";
 
 import "rxjs/add/observable/fromPromise";
 import "rxjs/add/observable/of";
-import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/delay";
 
 import * as userActions from "../actions/user.action";
 import { AuthService } from "../../services";
+import * as fromRoot from "../../../store";
+import { map } from "rxjs/operators";
 
 @Injectable()
 export class UserEffects {
@@ -51,8 +52,20 @@ export class UserEffects {
       .then(credential => new userActions.GetUser())
       .catch(err => new userActions.AuthError({ error: err.message }));
     });
-    @Effect()
 
+    @Effect()
+    authenticated: Observable<Action> = this.actions
+      .ofType(userActions.AUTHENTICATED)
+      .pipe(
+        map((action: userActions.Authenticated) => action.payload),
+        map(item => {
+          return new fromRoot.Go({
+            path: ["/health"]
+          });
+        })
+      );
+
+  @Effect()
   registerEmail: Observable<Action> = this.actions
     .ofType(userActions.EMAIL_REGISTER)
     .map((action: userActions.EmailRegister) => action.payload)
