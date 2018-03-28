@@ -12,19 +12,19 @@ import { Router, NavigationEnd } from '@angular/router';
   <div class="row mb-3">
     <div class="col hide"></div>
     <div class="col left">
-      <button class="btn mt-3"
+      <button class="btn mt-3" routerLink="/health/meals"
         [class.active]="activeRoute === 'meals'">
         meals
       </button>
     </div>
     <div class="col">
-      <button class="btn mt-3"
+      <button class="btn mt-3" routerLink="/health/schedule"
         [class.active]="activeRoute === 'schedule'">
         schedule
       </button>
     </div>
     <div class="col right">
-      <button class="btn mt-3"
+      <button class="btn mt-3" routerLink="/health/workouts"
         [class.active]="activeRoute === 'workouts'">
         workouts
       </button>

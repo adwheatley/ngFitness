@@ -14,7 +14,9 @@ export const ROUTES: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'schedule'},
-      { path: 'schedule', loadChildren: './modules/schedule/schedule.module#ScheduleModule'}
+      { path: 'schedule', loadChildren: './modules/schedule/schedule.module#ScheduleModule'},
+      { path: 'meals', loadChildren: './modules/meals/meals.module#MealsModule'},
+      { path: 'workouts', loadChildren: './modules/workouts/workouts.module#WorkoutsModule'}
     ]
   }
 ];

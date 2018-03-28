@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-schedule',
   template: `
-    <h1 class="text-center">Schedule Works</h1>
+    <h1 class="text-center">Schedule</h1>
   `,
   styleUrls: ['./schedule.component.scss']
 })
